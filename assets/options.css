@@ -1,0 +1,56 @@
+/* Dreamland Ponies — optional extras. Everything here is OFF unless switched on in the Options panel. */
+
+/* ----- the panel itself (preview tool, not part of the site) ----- */
+.opt-fab { position: fixed; left: 18px; bottom: 18px; z-index: 160; display: inline-flex; align-items: center; gap: 8px; border: 0; cursor: pointer; padding: 11px 18px; border-radius: 999px; background: var(--plum); color: #fff; font: 500 .8rem/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; box-shadow: var(--shadow-m); transition: transform .35s var(--ease), background .3s; }
+.opt-fab:hover { transform: translateY(-3px); background: var(--orchid); }
+.opt-fab i { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 4px rgba(200, 162, 90, .25); }
+.opt-panel { position: fixed; left: 18px; bottom: 70px; z-index: 160; width: min(330px, calc(100vw - 36px)); background: #fff; border: 1px solid var(--line); border-radius: var(--r-m); box-shadow: var(--shadow-l); padding: 18px 18px 14px; opacity: 0; visibility: hidden; transform: translateY(14px) scale(.97); transform-origin: bottom left; transition: opacity .3s var(--ease), transform .35s var(--ease), visibility .3s; }
+.opt-panel.is-open { opacity: 1; visibility: visible; transform: none; }
+.opt-panel h2 { margin: 0 0 4px; font: 600 1.35rem/1.2 var(--serif); color: var(--plum); }
+.opt-panel p { margin: 0 0 12px; font-size: .86rem; line-height: 1.5; color: var(--muted); }
+.opt-row { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 11px 0; border-top: 1px solid var(--line); cursor: pointer; font-size: .97rem; color: var(--ink); }
+.opt-row small { display: block; font-size: .8rem; color: var(--muted); }
+.opt-row input { appearance: none; flex: none; width: 46px; height: 26px; border-radius: 999px; background: #dcd3d9; position: relative; cursor: pointer; transition: background .3s; margin: 0; }
+.opt-row input::after { content: ""; position: absolute; left: 3px; top: 3px; width: 20px; height: 20px; border-radius: 50%; background: #fff; box-shadow: 0 2px 6px rgba(58, 36, 64, .3); transition: transform .35s var(--ease); }
+.opt-row input:checked { background: linear-gradient(135deg, var(--rose), var(--orchid)); }
+.opt-row input:checked::after { transform: translateX(20px); }
+.opt-row a { color: var(--orchid); font-size: .9rem; white-space: nowrap; }
+
+/* ----- option 1: call and contact bar ----- */
+.call-bar { position: fixed; left: 50%; bottom: 14px; z-index: 85; display: flex; gap: 8px; padding: 8px; width: min(520px, calc(100vw - 20px)); border-radius: 999px; background: rgba(253, 249, 246, .92); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid var(--line); box-shadow: var(--shadow-l); transform: translate(-50%, 140%); transition: transform .6s var(--ease); }
+.opt-callbar .call-bar { transform: translate(-50%, 0); }
+.call-bar a { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; padding: 13px 14px; border-radius: 999px; font: 500 .82rem/1 var(--sans); letter-spacing: .1em; text-transform: uppercase; white-space: nowrap; transition: transform .3s var(--ease), box-shadow .3s, background .3s; }
+.call-bar a:active { transform: scale(.97); }
+.call-bar .cb-call { color: #fff; background: linear-gradient(120deg, var(--rose), var(--orchid)); box-shadow: 0 8px 20px -8px rgba(169, 95, 163, .8); }
+.call-bar .cb-contact { color: var(--plum); background: #fff; border: 1px solid var(--line); }
+.call-bar a:hover { transform: translateY(-2px); }
+.call-bar svg { flex: none; }
+.opt-callbar .to-top { bottom: 88px; }
+.opt-callbar .opt-fab { bottom: 88px; }
+.opt-callbar .opt-panel { bottom: 140px; }
+.opt-callbar .site-footer { padding-bottom: 110px; }
+
+/* ----- option 2: slogan sign-off in the footer ----- */
+.footer-slogan { display: none; margin: 30px 0 0; text-align: center; font: 400 clamp(1.7rem, 3.6vw, 2.6rem)/1.2 var(--script); color: var(--petal); }
+.opt-footslogan .footer-slogan { display: block; animation: vt-in .8s var(--ease) both; }
+
+/* ----- option 3: reviews strip on the home page ----- */
+.reviews-strip { display: none; overflow: hidden; padding: clamp(40px, 5vw, 70px) 0; background: linear-gradient(180deg, rgba(251, 238, 243, .2), var(--blush)); }
+.opt-reviews .reviews-strip { display: block; }
+.reviews-strip .rs-head { text-align: center; margin-bottom: 28px; }
+.reviews-track { display: flex; gap: 22px; width: max-content; animation: rs-move var(--dur, 90s) linear infinite; padding: 6px 0 16px; }
+.reviews-strip:hover .reviews-track, .reviews-strip:focus-within .reviews-track { animation-play-state: paused; }
+@keyframes rs-move { to { transform: translateX(-50%); } }
+.rs-card { flex: none; width: min(380px, 82vw); background: #fff; border: 1px solid var(--line); border-radius: var(--r-m); padding: 24px 24px 20px; box-shadow: var(--shadow-s); transition: transform .5s var(--ease), box-shadow .5s var(--ease), border-color .4s; display: flex; flex-direction: column; }
+.rs-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-m); border-color: rgba(215, 127, 176, .45); }
+.rs-stars { color: var(--gold); letter-spacing: .18em; font-size: .95rem; }
+.rs-text { margin: 12px 0 16px; font-size: .98rem; line-height: 1.65; color: var(--ink); display: -webkit-box; -webkit-line-clamp: 7; -webkit-box-orient: vertical; overflow: hidden; }
+.rs-who { margin-top: auto; font: 600 1.15rem/1.2 var(--serif); color: var(--plum); }
+.rs-who span { display: block; font: 400 .84rem/1.5 var(--sans); color: var(--muted); letter-spacing: .04em; }
+
+@media (max-width: 720px) {
+  .call-bar a { font-size: .74rem; padding: 13px 8px; letter-spacing: .06em; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reviews-track { animation: none; overflow-x: auto; width: auto; }
+}
