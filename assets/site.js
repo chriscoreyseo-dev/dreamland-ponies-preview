@@ -32,6 +32,35 @@
     });
   });
 
+  // slogan: split into words so it can write itself in (the words themselves are unchanged)
+  doc.querySelectorAll('.slogan').forEach(function (el) {
+    if (reduce) return;
+    var text = el.textContent.trim(), words = text.split(/\s+/);
+    el.setAttribute('aria-label', text);
+    el.textContent = '';
+    el.classList.add('fx');
+    el.style.setProperty('--n', words.length);
+    words.forEach(function (w, i) {
+      var s = doc.createElement('span');
+      s.className = 'w' + (/dreams/i.test(w) ? ' key' : '');
+      s.setAttribute('aria-hidden', 'true');
+      s.style.setProperty('--i', i);
+      s.textContent = w;
+      el.appendChild(s);
+      if (i < words.length - 1) el.appendChild(doc.createTextNode(' '));
+    });
+    [[8, -10, '0s'], [30, 92, '.9s'], [52, -18, '1.7s'], [71, 96, '.4s'], [92, -6, '2.3s']].forEach(function (p) {
+      var t = doc.createElement('i');
+      t.className = 'twinkle';
+      t.setAttribute('aria-hidden', 'true');
+      t.textContent = '✦';
+      t.style.left = p[0] + '%';
+      t.style.top = p[1] + '%';
+      t.style.setProperty('--t', p[2]);
+      el.appendChild(t);
+    });
+  });
+
   // reveal on scroll, staggered inside a row
   var items = [].slice.call(doc.querySelectorAll('.reveal'));
   items.forEach(function (el) {
