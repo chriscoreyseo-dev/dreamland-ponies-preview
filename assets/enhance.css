@@ -1,0 +1,76 @@
+/* Dreamland Ponies — enhancements, round 2. Presentation only: no words or pictures change. */
+
+/* soft cross-fade between pages */
+@view-transition { navigation: auto; }
+::view-transition-old(root) { animation: vt-out .28s ease both; }
+::view-transition-new(root) { animation: vt-in .45s ease both; }
+@keyframes vt-out { to { opacity: 0; transform: translateY(-8px); } }
+@keyframes vt-in { from { opacity: 0; transform: translateY(12px); } }
+
+/* reading progress line */
+.scroll-progress { position: fixed; inset: 0 0 auto 0; height: 3px; z-index: 150; transform: scaleX(0); transform-origin: left; background: linear-gradient(90deg, var(--rose), var(--gold), var(--orchid)); pointer-events: none; }
+
+/* back to top */
+.to-top { position: fixed; right: 22px; bottom: 22px; z-index: 80; width: 52px; height: 52px; border-radius: 50%; border: 0; cursor: pointer; color: #fff; display: grid; place-items: center; background: linear-gradient(135deg, var(--rose), var(--orchid)); box-shadow: 0 12px 28px -10px rgba(169, 95, 163, .8); opacity: 0; transform: translateY(18px) scale(.8); pointer-events: none; transition: opacity .4s var(--ease), transform .45s var(--ease), box-shadow .3s; }
+.to-top.is-on { opacity: 1; transform: none; pointer-events: auto; }
+.to-top:hover { transform: translateY(-5px); box-shadow: 0 18px 34px -10px rgba(169, 95, 163, .95); }
+.to-top:hover svg { animation: nudge .7s var(--ease) infinite alternate; }
+@keyframes nudge { to { transform: translateY(-4px); } }
+
+/* cards and the film tilt toward the pointer, with a light that follows it */
+.card, .hero-film { --rx: 0deg; --ry: 0deg; --mx: 50%; --my: 50%; }
+.card { overflow: hidden; }
+.card::after, .hero-film::before { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 3; opacity: 0; transition: opacity .4s; background: radial-gradient(420px circle at var(--mx) var(--my), rgba(255, 255, 255, .6), transparent 55%); mix-blend-mode: soft-light; }
+.card.is-tilt::after, .hero-film.is-tilt::before { opacity: 1; }
+.card.reveal.is-in.is-tilt, .card.is-tilt { transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry)) translateY(-8px); transition: transform .12s linear, box-shadow .5s var(--ease), border-color .4s; transition-delay: 0ms; }
+.hero-film.reveal.is-in { transition: transform .6s var(--ease), box-shadow .6s var(--ease), opacity .9s var(--ease); }
+.hero-film.reveal.is-in.is-tilt { transform: perspective(1400px) rotateX(var(--rx)) rotateY(var(--ry)) scale(1.012); transition: transform .12s linear, box-shadow .6s var(--ease); box-shadow: 0 40px 90px -28px rgba(58, 36, 64, .5); }
+
+/* card buttons: an arrow slides in */
+.btn-row a.btn::after { content: "→"; font-style: normal; font-family: var(--sans); font-size: .8em; display: inline-block; width: 0; opacity: 0; transform: translateX(-8px); transition: width .4s var(--ease), opacity .3s, transform .4s var(--ease), margin .4s var(--ease); overflow: hidden; }
+.btn-row a.btn:hover::after, .card:hover .btn-row a.btn::after { width: 1em; margin-left: .45em; opacity: 1; transform: none; }
+.card:hover .btn-row a.btn { background-position: 100% 0; }
+
+/* ornamental divider that draws outward from a star */
+.rule { height: 1px; overflow: visible; position: relative; opacity: 1; background: linear-gradient(90deg, transparent, var(--line) 18%, var(--gold) 46%, transparent 47.5%, transparent 52.5%, var(--gold) 54%, var(--line) 82%, transparent); }
+.js .rule { transform: scaleX(.2); transition: transform 1.2s var(--ease); }
+.rule::after { content: "✦"; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -52%); color: var(--gold); font: 400 15px/1 var(--sans); }
+.js .rule::after { transform: translate(-50%, -52%) scale(0) rotate(-90deg); transition: transform .9s var(--ease) .3s; }
+.js .rule.is-in { transform: scaleX(1); }
+.js .rule.is-in::after { transform: translate(-50%, -52%) scale(1) rotate(0deg); }
+
+/* a few crisp gold stars around the welcome */
+.star { position: absolute; z-index: 0; pointer-events: none; color: var(--gold); font: 400 var(--s, 14px)/1 var(--sans); opacity: 0; animation: twinkle 4.5s ease-in-out var(--t, 0s) infinite; }
+
+/* pictures fade in as they load */
+img.fade { opacity: 0; transition: opacity .7s ease, transform .9s var(--ease), filter .5s; }
+img.fade.is-loaded { opacity: 1; }
+
+/* menu items settle in when a dropdown opens (desktop) */
+@media (min-width: 1081px) {
+  .submenu > li { opacity: 0; transform: translateY(6px); transition: opacity .3s var(--ease), transform .35s var(--ease); }
+  li:hover > .submenu > li, li:focus-within > .submenu > li { opacity: 1; transform: none; }
+  .submenu > li:nth-child(2) { transition-delay: 30ms; }
+  .submenu > li:nth-child(3) { transition-delay: 60ms; }
+  .submenu > li:nth-child(4) { transition-delay: 90ms; }
+  .submenu > li:nth-child(5) { transition-delay: 120ms; }
+  .submenu > li:nth-child(6) { transition-delay: 150ms; }
+  .submenu > li:nth-child(7) { transition-delay: 180ms; }
+  .submenu > li:nth-child(n+8) { transition-delay: 210ms; }
+}
+
+/* footer rises in an arch */
+.site-footer { border-radius: clamp(28px, 5vw, 64px) clamp(28px, 5vw, 64px) 0 0; margin-top: 28px; }
+
+/* gallery tiles lift a little */
+.gallery-item { transition: transform .5s var(--ease), box-shadow .5s var(--ease); }
+.gallery-item:hover { transform: translateY(-6px); box-shadow: var(--shadow-m); }
+
+@media (max-width: 1080px) {
+  .to-top { right: 14px; bottom: 14px; width: 46px; height: 46px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .js .rule, .js .rule::after { transform: none; }
+  .js .rule::after { transform: translate(-50%, -52%); }
+  img.fade { opacity: 1; }
+}
