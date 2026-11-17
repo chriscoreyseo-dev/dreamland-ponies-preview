@@ -1,20 +1,4 @@
-/* Dreamland Ponies — optional extras. Everything here is OFF unless switched on in the Options panel. */
-
-/* ----- the panel itself (preview tool, not part of the site) ----- */
-.opt-fab { position: fixed; left: 18px; bottom: 18px; z-index: 160; display: inline-flex; align-items: center; gap: 8px; border: 0; cursor: pointer; padding: 11px 18px; border-radius: 999px; background: var(--plum); color: #fff; font: 500 .8rem/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; box-shadow: var(--shadow-m); transition: transform .35s var(--ease), background .3s; }
-.opt-fab:hover { transform: translateY(-3px); background: var(--orchid); }
-.opt-fab i { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 4px rgba(200, 162, 90, .25); }
-.opt-panel { position: fixed; left: 18px; bottom: 70px; z-index: 160; width: min(330px, calc(100vw - 36px)); background: #fff; border: 1px solid var(--line); border-radius: var(--r-m); box-shadow: var(--shadow-l); padding: 18px 18px 14px; opacity: 0; visibility: hidden; transform: translateY(14px) scale(.97); transform-origin: bottom left; transition: opacity .3s var(--ease), transform .35s var(--ease), visibility .3s; }
-.opt-panel.is-open { opacity: 1; visibility: visible; transform: none; }
-.opt-panel h2 { margin: 0 0 4px; font: 600 1.35rem/1.2 var(--serif); color: var(--plum); }
-.opt-panel p { margin: 0 0 12px; font-size: .86rem; line-height: 1.5; color: var(--muted); }
-.opt-row { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 11px 0; border-top: 1px solid var(--line); cursor: pointer; font-size: .97rem; color: var(--ink); }
-.opt-row small { display: block; font-size: .8rem; color: var(--muted); }
-.opt-row input { appearance: none; flex: none; width: 46px; height: 26px; border-radius: 999px; background: #dcd3d9; position: relative; cursor: pointer; transition: background .3s; margin: 0; }
-.opt-row input::after { content: ""; position: absolute; left: 3px; top: 3px; width: 20px; height: 20px; border-radius: 50%; background: #fff; box-shadow: 0 2px 6px rgba(58, 36, 64, .3); transition: transform .35s var(--ease); }
-.opt-row input:checked { background: linear-gradient(135deg, var(--rose), var(--orchid)); }
-.opt-row input:checked::after { transform: translateX(20px); }
-.opt-row a { color: var(--orchid); font-size: .9rem; white-space: nowrap; }
+/* Dreamland Ponies — call bar, footer slogan, reviews strip. Always on. */
 
 /* ----- option 1: call and contact bar ----- */
 .call-bar { position: fixed; left: 50%; bottom: 14px; z-index: 85; display: flex; gap: 8px; padding: 8px; width: min(520px, calc(100vw - 20px)); border-radius: 999px; background: rgba(253, 249, 246, .92); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid var(--line); box-shadow: var(--shadow-l); transform: translate(-50%, 140%); transition: transform .6s var(--ease); }
@@ -26,8 +10,6 @@
 .call-bar a:hover { transform: translateY(-2px); }
 .call-bar svg { flex: none; }
 .opt-callbar .to-top { bottom: 88px; }
-.opt-callbar .opt-fab { bottom: 88px; }
-.opt-callbar .opt-panel { bottom: 140px; }
 .opt-callbar .site-footer { padding-bottom: 110px; }
 
 /* ----- option 2: slogan sign-off in the footer ----- */
